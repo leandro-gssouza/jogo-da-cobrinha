@@ -3,8 +3,8 @@ let context = canvas.getContext("2d");
 let box = 16;
 let snake = [];
 snake[0] = {
-    x: 1.25 * box,
-    y: 1.25 * box
+    x: 1 * box,
+    y: 1 * box
 }
 let direction = "right";
 let food = {
@@ -56,7 +56,12 @@ function iniciarJogo(){
     if (direction == "up") snakeY -= box;
     if (direction == "down") snakeY += box;
 
-    snake.pop();
+    if (snakeX != food.x || snakeY != food.y){
+        snake.pop();
+    }
+    else {food.x = Math.floor(Math.random() * 31 + 1) * box;
+         food.y = Math.floor(Math.random() * 31 + 1) * box;
+    }
 
     let newhead = {
         x: snakeX,
